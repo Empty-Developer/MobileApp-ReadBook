@@ -10,7 +10,7 @@ const Home = () => {
       
 			router.replace('/login')
 
-		}, 4000)
+		}, 2500)
 
 		return () => {
 			clearTimeout(timerMoment)
