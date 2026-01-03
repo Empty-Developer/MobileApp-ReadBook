@@ -6,30 +6,41 @@ import {
 	View,
 	Pressable,
 	TextInput,
+	useColorScheme
 } from 'react-native'
 import { globalStyle } from '../style/global_style'
 import { useFonts } from 'expo-font'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { Link, Stack } from 'expo-router'
+import { useRouter } from 'expo-router'
+import { button } from '../components/ui/Button/button'
+import { google_button } from '../components/ui/Button/button_google'
+import { Colors } from '../constants/Colors'
 
 const Login = () => {
 
-  const [fontsLoaded] = useFonts({
-		'ge-bold': require('../assets/font/Geist-Bold.ttf'),
-		'ge-regular': require('../assets/font/Geist-Regular.ttf'),
-		'ge-medium': require('../assets/font/Geist-Medium.ttf'),
+	const colorScheme = useColorScheme() ?? 'light'
+	
+	const theme = Colors[colorScheme]
+
+	const router = useRouter()
+
+  	const [fontsLoaded] = useFonts({
+			'ge-bold': require('../assets/font/Geist-Bold.ttf'),
+			'ge-regular': require('../assets/font/Geist-Regular.ttf'),
+			'ge-medium': require('../assets/font/Geist-Medium.ttf'),
 	})
 
-  if(!fontsLoaded) {
-	return (
-		<View style={globalStyle.main}>
-			<Text>Loading...</Text>
-		</View>
+  	if(!fontsLoaded) {
+		return (
+			<View style={globalStyle.main}>
+				<Text>Loading...</Text>
+			</View>
 		)
 	}
 
 return (
-	<View style={globalStyle.main}>
+	<View style={[globalStyle.main, { backgroundColor: theme.background }]}>
 		<View>
 			{/* logo */}
 			<Image
@@ -38,14 +49,15 @@ return (
 			/>
 		</View>
 		<View>
-			{/* h2 */}
-			<Text style={styles.h1}>Welcome back</Text>
+			{/* h1 */}
+			<Text style={[styles.h1, {color: theme.text}]}>Welcome back</Text>
 			{/* text */}
-			<Text style={styles.description}>Let’s get you in to Read Book</Text>
+			<Text style={[styles.description, {color: theme.description}]}>Let’s get you in to Read Book</Text>
 		</View>
 		{/* input */}
 		<View>
-			<TextInput placeholder='Your Email...'/>
+			<TextInput placeholder='Your Email...'></TextInput>
+			<TextInput placeholder='Your Password...'></TextInput>
 		</View>
 		{/* link */}
 		<View>
@@ -56,9 +68,10 @@ return (
 		{/* button */}
 		<View style={{ width: '100%' }}>
 			<Pressable
-				style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
+				style={({ pressed }) => [button.btn, pressed && button.pressed]}
+				onPress={() => router.push('/hello_screen')}
 			>
-				<Text style={styles.text_button}>Sign in</Text>
+				<Text style={button.text_button}>Sign in</Text>
 			</Pressable>
 		</View>
 		{/* line recovery*/}
@@ -71,12 +84,14 @@ return (
 		<View style={{ width: '100%' }}>
 			<Pressable
 				style={({ pressed }) => [
-					styles.btn_google,
-					pressed && styles.pressed_google,
+					google_button.btn_google,
+					pressed && google_button.pressed_google,
 				]}
 			>
 				<AntDesign name='google' size={24} color='#000000' />
-				<Text style={styles.text_button_google}>Sign In With Google</Text>
+				<Text style={google_button.text_button_google}>
+					Sign In With Google
+				</Text>
 			</Pressable>
 		</View>
 		{/* link registration */}
@@ -99,7 +114,6 @@ const styles = StyleSheet.create({
 	h1: {
 		fontSize: 40,
 		textAlign: 'center',
-		color: '#0D0D0D',
 		paddingTop: 40,
 		paddingBottom: 5,
 		fontFamily: 'ge-bold',
@@ -144,55 +158,5 @@ const styles = StyleSheet.create({
 		fontFamily: 'ge-regular',
 		color: '#373737',
 		paddingVertical: 30,
-	},
-
-	// button Sign in
-	btn: {
-		backgroundColor: '#000000',
-		width: '100%',
-		height: 53,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 100,
-	},
-
-	pressed: {
-		backgroundColor: '#1A1A1A',
-		opacity: 0.8,
-	},
-
-	text_button: {
-		color: '#D4D4D4',
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center',
-		fontFamily: 'ge-medium',
-		fontSize: 20,
-	},
-
-	// button google
-	btn_google: {
-		backgroundColor: '#FFFFFF',
-		width: '100%',
-		height: 53,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 100,
-		flexDirection: 'row', // icon
-		gap: 10, // icon
-	},
-
-	pressed_google: {
-		backgroundColor: '#F2F2F2',
-		opacity: 0.8,
-	},
-
-	text_button_google: {
-		color: '#0D0D0D',
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center',
-		fontFamily: 'ge-medium',
-		fontSize: 20,
 	},
 })

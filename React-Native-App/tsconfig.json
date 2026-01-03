@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "style/theme.js", "style/global_style.js", "components/ui/Button/button.js"  ]
 }
