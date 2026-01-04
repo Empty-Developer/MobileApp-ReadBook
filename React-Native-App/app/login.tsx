@@ -13,8 +13,8 @@ import { useFonts } from 'expo-font'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { Link, Stack } from 'expo-router'
 import { useRouter } from 'expo-router'
-import { button } from '../components/ui/Button/button'
-import { google_button } from '../components/ui/Button/button_google'
+// import { button } from '../components/ui/Button/button'
+// import { google_button } from '../components/ui/Button/button_google'
 import { Colors } from '../constants/Colors'
 
 const Login = () => {
@@ -50,9 +50,11 @@ return (
 		</View>
 		<View>
 			{/* h1 */}
-			<Text style={[styles.h1, {color: theme.text}]}>Welcome back</Text>
+			<Text style={[styles.h1, { color: theme.text }]}>Welcome back</Text>
 			{/* text */}
-			<Text style={[styles.description, {color: theme.description}]}>Let’s get you in to Read Book</Text>
+			<Text style={[styles.description, { color: theme.description }]}>
+				Let’s get you in to Read Book
+			</Text>
 		</View>
 		{/* input */}
 		<View>
@@ -61,41 +63,45 @@ return (
 		</View>
 		{/* link */}
 		<View>
-			<Link href={'/recovery_password'} style={styles.text_link}>
+			<Link
+				href={'/recovery_password'}
+				style={[styles.text_link, { color: theme.description }]}
+			>
 				Forgot password?
 			</Link>
 		</View>
 		{/* button */}
 		<View style={{ width: '100%' }}>
 			<Pressable
-				style={({ pressed }) => [button.btn, pressed && button.pressed]}
+				style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
 				onPress={() => router.push('/hello_screen')}
 			>
-				<Text style={button.text_button}>Sign in</Text>
+				<Text style={styles.text_button}>Sign in</Text>
 			</Pressable>
 		</View>
 		{/* line recovery*/}
 		<View style={styles.line_container}>
-			<View style={styles.line_left} />
-			<Text style={styles.line_text}>or</Text>
-			<View style={styles.line_right} />
+			<View style={[styles.line_left, { backgroundColor: theme.layout }]} />
+			<Text style={[styles.line_text, { color: theme.layout }]}>or</Text>
+			<View style={[styles.line_right, { backgroundColor: theme.layout }]} />
 		</View>
 		{/* google button */}
 		<View style={{ width: '100%' }}>
 			<Pressable
 				style={({ pressed }) => [
-					google_button.btn_google,
-					pressed && google_button.pressed_google,
+					styles.btn_google,
+					pressed && styles.pressed_google,
 				]}
 			>
 				<AntDesign name='google' size={24} color='#000000' />
-				<Text style={google_button.text_button_google}>
-					Sign In With Google
-				</Text>
+				<Text style={styles.text_button_google}>Sign In With Google</Text>
 			</Pressable>
 		</View>
 		{/* link registration */}
-		<Link href={'/registration'} style={styles.text_link}>
+		<Link
+			href={'/registration'}
+			style={[styles.text_link, { color: theme.description }]}
+		>
 			Don’t have an account?
 		</Link>
 	</View>
@@ -121,7 +127,6 @@ const styles = StyleSheet.create({
 
 	description: {
 		fontSize: 20,
-		color: '#373737',
 		textAlign: 'center',
 		paddingBottom: 60,
 		fontFamily: 'ge-regular',
@@ -135,7 +140,6 @@ const styles = StyleSheet.create({
 
 	line_text: {
 		fontSize: 20,
-		color: '#0D0D0D',
 		marginHorizontal: 5,
 		fontFamily: 'ge-regular',
 	},
@@ -143,13 +147,11 @@ const styles = StyleSheet.create({
 	line_right: {
 		flex: 1,
 		height: 1,
-		backgroundColor: '#0D0D0D',
 	},
 
 	line_left: {
 		flex: 1,
 		height: 1,
-		backgroundColor: '#0D0D0D',
 	},
 
 	// recovery link
@@ -158,5 +160,55 @@ const styles = StyleSheet.create({
 		fontFamily: 'ge-regular',
 		color: '#373737',
 		paddingVertical: 30,
+	},
+
+	// button sign in
+	btn: {
+		backgroundColor: '#1A1A1A',
+		width: '100%',
+		height: 53,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 100,
+	},
+
+	pressed: {
+		backgroundColor: '#1A1A1A',
+		opacity: 0.8,
+	},
+
+	text_button: {
+		color: '#D4D4D4',
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		fontFamily: 'ge-medium',
+		fontSize: 20,
+	},
+
+	// button google
+	btn_google: {
+		backgroundColor: '#FFFFFF',
+		width: '100%',
+		height: 53,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 100,
+		flexDirection: 'row', // icon
+		gap: 10, // icon
+	},
+
+	pressed_google: {
+		backgroundColor: '#F2F2F2',
+		opacity: 0.8,
+	},
+
+	text_button_google: {
+		color: '#0D0D0D',
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
+		fontFamily: 'ge-medium',
+		fontSize: 20,
 	},
 })
