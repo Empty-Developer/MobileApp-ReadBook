@@ -47,7 +47,7 @@ const TabBarButton = ({
     })
 
     const [fontsLoaded] = useFonts({
-                'ge-medium': require('../assets/font/Geist-Medium.ttf'),
+                'ge-medium': require('@/assets/font/Geist-Medium.ttf'),
         })
 
 	return (

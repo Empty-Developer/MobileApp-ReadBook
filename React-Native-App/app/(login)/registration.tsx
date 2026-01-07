@@ -1,14 +1,14 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View, Pressable } from 'react-native'
-import { globalStyle } from '../style/global_style'
+import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
 import { Link, Stack } from 'expo-router'
 
 const registration = () => {
 
   const [fontsLoaded] = useFonts({
-      'ge-bold': require('../assets/font/Geist-Bold.ttf'),
-      'ge-regular': require('../assets/font/Geist-Regular.ttf'),
+      'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
+      'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
     })
   
     if(!fontsLoaded) {
@@ -26,7 +26,7 @@ const registration = () => {
 				{/* logo */}
 				<Image
 					style={styles.image}
-					source={require('../assets/images/logo.png')}
+					source={require('@/assets/images/logo-light.png')}
 				/>
 			</View>
 			<View>

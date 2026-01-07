@@ -1,25 +1,24 @@
 import { StyleSheet, Text, View, Pressable, useColorScheme } from 'react-native'
-import { Colors } from '../constants/Colors'
-import { globalStyle } from '../style/global_style'
+import { Colors } from '@/constants/Colors'
+import { globalStyle } from '@/style/global_style'
 import { useRouter } from 'expo-router'
 import React from 'react'
-
+import ThemedButton from '@/components/ui/Button/ThemedButton'
+import ThemedView from '@/components/ui/View/ThemedView'
 const hello_screen = () => {
     const colorScheme = useColorScheme() ?? 'light'
     const theme = Colors[colorScheme]
     const router = useRouter()
 
   return (
-		<View style={[globalStyle.main, { backgroundColor: theme.background }]}>
+		<ThemedView style={globalStyle.main}>
 			<View style={{ width: '100%' }}>
-				<Pressable
-					style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
-					onPress={() => router.push('/home')}
-				>
+				{/* fuck routing */}
+				<ThemedButton onPress={() => router.push('/(main)')} style={undefined}>  
 					<Text style={styles.text_button}>Let’s go</Text>
-				</Pressable>
+				</ThemedButton>
 			</View>
-		</View>
+		</ThemedView>
 	)
 }
 

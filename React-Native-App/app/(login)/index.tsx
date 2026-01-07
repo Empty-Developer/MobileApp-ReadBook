@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Image, StyleSheet, View} from 'react-native'
-import { globalStyle } from '../style/global_style'
+import { globalStyle } from '@/style/global_style'
 import { router } from 'expo-router'
-
-
+import ThemedView from '@/components/ui/View/ThemedView'
+// hook logo theme
+import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
 const Home = () => {
   useEffect(() => {
 		const timerMoment = setTimeout(() => {
@@ -18,14 +19,12 @@ const Home = () => {
 	}, [])
 
 	return (
-		<View style={globalStyle.main}>
+		<ThemedView style={globalStyle.main}>
 			<View style={styles.logo_container}>
-				<Image
-					style={styles.image}
-					source={require('../assets/images/logo.png')}
-				/>
+				<ThemedLogo
+					style={styles.image}/>
 			</View>
-		</View>
+		</ThemedView>
 	)
 }
 

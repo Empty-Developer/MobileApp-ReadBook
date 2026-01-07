@@ -8,15 +8,26 @@ import {
 	TextInput,
 	useColorScheme
 } from 'react-native'
-import { globalStyle } from '../style/global_style'
+import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { Link, Stack } from 'expo-router'
+import { Link } from 'expo-router'
 import { useRouter } from 'expo-router'
 // import { button } from '../components/ui/Button/button'
 // import { google_button } from '../components/ui/Button/button_google'
-import { Colors } from '../constants/Colors'
+import { Colors } from '@/constants/Colors'
 
+// hook background all screen
+import ThemedView from '@/components/ui/View/ThemedView'
+// hook logo theme
+import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
+// hook text h1, description
+import ThemedText from '@/components/ui/Text/ThemedText' 
+// hooks for buttons jsx format (bad)
+import ThemedButton from '@/components/ui/Button/ThemedButton'
+import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
+//
+import ThemedTextInput from '@/components/ui/Input/ThemedTextInput'
 const Login = () => {
 
 	const colorScheme = useColorScheme() ?? 'light'
@@ -26,9 +37,9 @@ const Login = () => {
 	const router = useRouter()
 
   	const [fontsLoaded] = useFonts({
-			'ge-bold': require('../assets/font/Geist-Bold.ttf'),
-			'ge-regular': require('../assets/font/Geist-Regular.ttf'),
-			'ge-medium': require('../assets/font/Geist-Medium.ttf'),
+			'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
+			'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
+			'ge-medium': require('@/assets/font/Geist-Medium.ttf'),
 	})
 
   	if(!fontsLoaded) {
@@ -40,29 +51,26 @@ const Login = () => {
 	}
 
 return (
-	<View style={[globalStyle.main, { backgroundColor: theme.background }]}>
+	<ThemedView style={[globalStyle.main]}>
 		<View>
 			{/* logo */}
-			<Image
-				style={styles.image}
-				source={require('../assets/images/logo.png')}
-			/>
+			<ThemedLogo style={styles.image}/>
 		</View>
 		<View>
 			{/* h1 */}
-			<Text style={[styles.h1, { color: theme.text }]}>Welcome back</Text>
+			<ThemedText style={styles.h1} >Welcome back</ThemedText>
 			{/* text */}
-			<Text style={[styles.description, { color: theme.description }]}>
+			<ThemedText style={styles.description} description={true}>
 				Let’s get you in to Read Book
-			</Text>
+			</ThemedText>
 		</View>
 		{/* input */}
-		<View>
-			<TextInput placeholder='Your Email...'></TextInput>
-			<TextInput placeholder='Your Password...'></TextInput>
+		<View style={{ width: '100%' }}>
+			<ThemedTextInput keyboardType='email-address' placeholder='Your Email...' />
+			<ThemedTextInput secureTextEntry placeholder='Your Password...' />
 		</View>
 		{/* link */}
-		<View>
+		<View >
 			<Link
 				href={'/recovery_password'}
 				style={[styles.text_link, { color: theme.description }]}
@@ -72,12 +80,9 @@ return (
 		</View>
 		{/* button */}
 		<View style={{ width: '100%' }}>
-			<Pressable
-				style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
-				onPress={() => router.push('/hello_screen')}
-			>
+			<ThemedButton onPress={() => router.push('/hello_screen')} style={undefined}>
 				<Text style={styles.text_button}>Sign in</Text>
-			</Pressable>
+			</ThemedButton>
 		</View>
 		{/* line recovery*/}
 		<View style={styles.line_container}>
@@ -87,15 +92,10 @@ return (
 		</View>
 		{/* google button */}
 		<View style={{ width: '100%' }}>
-			<Pressable
-				style={({ pressed }) => [
-					styles.btn_google,
-					pressed && styles.pressed_google,
-				]}
-			>
-				<AntDesign name='google' size={24} color='#000000' />
+			<ThemedButtonGoogle style={undefined}>
+				<AntDesign name='google' size={24} color={theme.layout_black} />
 				<Text style={styles.text_button_google}>Sign In With Google</Text>
-			</Pressable>
+			</ThemedButtonGoogle>
 		</View>
 		{/* link registration */}
 		<Link
@@ -104,7 +104,7 @@ return (
 		>
 			Don’t have an account?
 		</Link>
-	</View>
+	</ThemedView>
 )
 }
 
@@ -128,14 +128,15 @@ const styles = StyleSheet.create({
 	description: {
 		fontSize: 20,
 		textAlign: 'center',
-		paddingBottom: 60,
+		paddingBottom: 49,
 		fontFamily: 'ge-regular',
 	},
 	// dividing line
 	line_container: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginVertical: 25,
+		marginBottom: 25,
+		marginTop: 14,
 	},
 
 	line_text: {
@@ -161,22 +162,7 @@ const styles = StyleSheet.create({
 		color: '#373737',
 		paddingVertical: 30,
 	},
-
-	// button sign in
-	btn: {
-		backgroundColor: '#1A1A1A',
-		width: '100%',
-		height: 53,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 100,
-	},
-
-	pressed: {
-		backgroundColor: '#1A1A1A',
-		opacity: 0.8,
-	},
-
+	// text sign in
 	text_button: {
 		color: '#D4D4D4',
 		textAlign: 'center',
@@ -186,23 +172,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 
-	// button google
-	btn_google: {
-		backgroundColor: '#FFFFFF',
-		width: '100%',
-		height: 53,
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 100,
-		flexDirection: 'row', // icon
-		gap: 10, // icon
-	},
-
-	pressed_google: {
-		backgroundColor: '#F2F2F2',
-		opacity: 0.8,
-	},
-
+	// text button google
 	text_button_google: {
 		color: '#0D0D0D',
 		textAlign: 'center',

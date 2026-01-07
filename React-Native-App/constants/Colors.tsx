@@ -7,7 +7,9 @@ export const Colors = {
 		button_black: '#1A1A1A',
 		layout_black: '#0D0D0D',
 		button_white: '#FFFFFF',
-		layout: '#F2F2F2',
+		layout_theme: '#0D0D0D',
+		background_button: '#FFFFFF',
+		layout: '#F2F2F2'
 	},
 
 	light: {
@@ -15,9 +17,12 @@ export const Colors = {
 		description: '#373737',
 		text_button: '#D4D4D4',
 		background: '#E5E5E5',
-		button_black: '#000000',
+		button_black: '#1A1A1A',
 		layout_black: '#0D0D0D',
 		button_white: '#FFFFFF',
-		layout: '#0D0D0D',
+		layout_theme: '#F2F2F2',
+		background_button: '#1A1A1A',
+		layout: '#0D0D0D'
+		
 	},
 }

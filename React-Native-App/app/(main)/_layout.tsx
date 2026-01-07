@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { TabBar } from "@/components/TabBar"
+import { TabBar } from "@/components/ui/TabBar/TabBar"
 
 
 const TabLayout = () => {
