@@ -26,7 +26,7 @@ import ThemedText from '@/components/ui/Text/ThemedText'
 // hooks for buttons jsx format (bad)
 import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
-//
+// hook for input components
 import ThemedTextInput from '@/components/ui/Input/ThemedTextInput'
 const Login = () => {
 

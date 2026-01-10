@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, useColorScheme } from 'react-native'
+import { StyleSheet, Text, View, useColorScheme } from 'react-native'
 import { Colors } from '@/constants/Colors'
 import { globalStyle } from '@/style/global_style'
 import { useRouter } from 'expo-router'
@@ -27,7 +27,6 @@ export default hello_screen
 const styles = StyleSheet.create({
 	// button next home
 	btn: {
-		backgroundColor: '#1A1A1A',
 		width: '100%',
 		height: 53,
 		justifyContent: 'center',
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
 	},
 
 	pressed: {
-		backgroundColor: '#1A1A1A',
 		opacity: 0.8,
 	},
 
