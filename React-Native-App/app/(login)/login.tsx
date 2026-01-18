@@ -28,7 +28,32 @@ import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
 // hook for input components
 import ThemedTextInput from '@/components/ui/Input/ThemedTextInput'
+
+// library function for hook 
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+// data email and password
+import { IAuthFormData } from '@/types/auth.interface'
+import AuthFields from '@/auth/Field/AuthField'
+
 const Login = () => {
+
+	// login hook-form
+	const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+		mode: 'onChange'
+	})
+
+	const handleSignIn = async () => {
+  		await handleSubmit(onSubmit)();
+  		router.push('/hello_screen');
+	};
+
+	// I receive user data
+	const onSubmit: SubmitHandler<IAuthFormData> = data =>{
+		console.log(data.email)
+		console.log(data.password)
+	}
+
 
 	const colorScheme = useColorScheme() ?? 'light'
 	
@@ -66,8 +91,11 @@ return (
 		</View>
 		{/* input */}
 		<View style={{ width: '100%' }}>
-			<ThemedTextInput keyboardType='email-address' placeholder='Your Email...' />
-			<ThemedTextInput secureTextEntry placeholder='Your Password...' />
+
+			<AuthFields control={control} />
+
+			{/* <ThemedTextInput keyboardType='email-address' placeholder='Your Email...' />
+			<ThemedTextInput secureTextEntry placeholder='Your Password...' /> */}
 		</View>
 		{/* link */}
 		<View >
@@ -80,7 +108,10 @@ return (
 		</View>
 		{/* button */}
 		<View style={{ width: '100%' }}>
-			<ThemedButton onPress={() => router.push('/hello_screen')} style={undefined}>
+			{/* it is value for button  */}
+			<ThemedButton onPress={
+				handleSignIn
+				} style={undefined}>
 				<Text style={styles.text_button}>Sign in</Text>
 			</ThemedButton>
 		</View>

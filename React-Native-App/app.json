@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon-logo.png",
     "scheme": "readbook",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     
     "ios": {
