@@ -29,6 +29,7 @@ const AuthFields: FC<IAuthFields> = ({control}) => {
                 placeholder="Your Password..."
                 control={control}
                 name="password"
+                secureTextEntry
                 rules={{
                     required: 'Password is required',
                     minLength: {

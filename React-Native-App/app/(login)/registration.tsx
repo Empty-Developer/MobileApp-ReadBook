@@ -1,8 +1,8 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View, Pressable, useColorScheme } from 'react-native'
+import { StyleSheet, Text, View, useColorScheme } from 'react-native'
 import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
-import { Link, Stack } from 'expo-router'
+import { Link } from 'expo-router'
 import { Colors } from '@/constants/Colors'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { useRouter } from 'expo-router'
@@ -12,9 +12,20 @@ import ThemedText from '@/components/ui/Text/ThemedText'
 import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
 import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
-import ThemedTextInput from '@/components/ui/Input/ThemedTextInput'
+
+// library function for hook 
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+// data email and password
+import { IAuthFormData } from '@/types/auth.interface'
+import AuthFields from '@/auth/Field/AuthField'
 
 const registration = () => {
+
+	// login hook-form
+	const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+	mode: 'onChange'
+	})
 
 	const colorScheme = useColorScheme() ?? 'light'
 		
@@ -52,10 +63,9 @@ const registration = () => {
 			</View>
 
 			<View style={{ width: '100%' }}>
-				<ThemedTextInput keyboardType='email-address' placeholder='Your Email...' />
-				<ThemedTextInput secureTextEntry placeholder='Your Password...' />
+				<AuthFields control={control} />
 			</View>
-
+			
 			{/* button */}
 			<View style={{ width: '100%',
 				paddingTop: 25,

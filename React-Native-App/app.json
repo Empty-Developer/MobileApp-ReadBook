@@ -6,8 +6,13 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon-logo.png",
     "scheme": "readbook",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FF3D00"
+    },
     
     "ios": {
       "supportsTablet": true
@@ -34,7 +39,7 @@
           "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#E5E5E5",
           "dark": {
             "backgroundColor": "#000000"
           }

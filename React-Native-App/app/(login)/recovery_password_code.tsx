@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { StyleSheet, Text, View, useColorScheme, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { Colors } from '@/constants/Colors'
@@ -17,7 +17,8 @@ import { useRouter } from 'expo-router'
 // data email and password
 import { IAuthFormData } from '@/types/auth.interface'
 import AuthFields from '@/auth/Field/AuthField'
-
+// hook input code
+import CodeInput from '@/components/ui/InputCode/InputCode'
 // library function for hook 
 import { SubmitHandler, useForm } from 'react-hook-form'
 const recovery_password = () => {
@@ -36,9 +37,9 @@ const recovery_password = () => {
     mode: 'onChange'
   })
 
-  const handleCode = async () => {
+  const handleMain = async () => {
         await handleSubmit(onSubmit)();
-        router.push('/recovery_password_code');
+        router.push('/(main)');
   };
   
   // I receive user data
@@ -47,58 +48,54 @@ const recovery_password = () => {
     console.log(data.password)
   }
 
+  const handleCodeFilled = (code: string) => {
+	console.log(code)
+  }
+
   return (
-    <ThemedView style={[globalStyle.main]}>
-      <View>
-			  {/* logo */}
-			  <ThemedLogo style={styles.image}/>
-		  </View>
+	<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    	<ThemedView style={[globalStyle.main]}>
+    	    <View>
+				  {/* logo */}
+				  <ThemedLogo style={styles.image}/>
+			</View>
 
-      <View>
-			  {/* h1 */}
-			  <ThemedText style={styles.h1} >Reset password</ThemedText>
-			  {/* text */}
-			  <ThemedText style={styles.description} description={true}>
-				  Please enter your new password and email to verify your data.
-			  </ThemedText>
-		  </View>
-      {/* login */}
-      <View style={{ width: '100%' }}>
-			  <AuthFields control={control} />
-		  </View>
+    	    <View>
+				  {/* h1 */}
+				  <ThemedText style={styles.h1} >Reset password</ThemedText>
+				  {/* text */}
+				  <ThemedText style={styles.description} description={true}>
+					  Enter the numbers from the email you received.
+				  </ThemedText>
+			</View>
 
-        {/* button */}
-		  <View style={{ 
-        width: '100%',
-        marginTop: 35,
-       }}>
-			  {/* it is value for button  */}
-			  <ThemedButton onPress={
-				  handleCode
-			  	} style={undefined}>
-			  	<Text style={styles.text_button}>Continue</Text>
-			  </ThemedButton>
-		  </View>
-		  {/* line recovery*/}
-		  <View style={styles.line_container}>
-			  <View style={[styles.line_left, { backgroundColor: theme.layout }]} />
-			  <Text style={[styles.line_text, { color: theme.layout }]}>or</Text>
-			  <View style={[styles.line_right, { backgroundColor: theme.layout }]} />
-		  </View>
-		  {/* google button */}
-		  <View style={{ width: '100%' }}>
-			  <ThemedButtonGoogle style={undefined}>
-			  	<AntDesign name='google' size={24} color={theme.layout_black} />
-		  		<Text style={styles.text_button_google}>Sign In With Google</Text>
-		  	</ThemedButtonGoogle>
-		  </View>
-      <Link
-        href={'/login'}
-        style={[styles.text_link, { color: theme.description }]}
-      >
-        Remembered your password?
-      </Link>
-    </ThemedView>
+			<View>
+				<CodeInput
+				length={5}
+				onCodeFilled={handleCodeFilled}
+				/>
+			</View>
+
+    	    {/* button */}
+			<View style={{ 
+    	        width: '100%',
+    	        marginTop: 35,
+    	    }}>
+				{/* it is value for button  */}
+				<ThemedButton onPress={
+				  handleMain
+				} style={undefined}>
+				    <Text style={styles.text_button}>Continue</Text>
+				</ThemedButton>
+		    </View>
+    	    <Link
+    	        href={'/recovery_password'}
+    	        style={[styles.text_link, { color: theme.description }]}
+    	    >
+    	        Go back?
+    	    </Link>
+    	</ThemedView>
+	</TouchableWithoutFeedback>
   )
 }
 

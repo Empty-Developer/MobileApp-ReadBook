@@ -1,11 +1,8 @@
 import React from 'react'
 import {
-	Image,
 	StyleSheet,
 	Text,
 	View,
-	Pressable,
-	TextInput,
 	useColorScheme
 } from 'react-native'
 import { globalStyle } from '@/style/global_style'
@@ -26,8 +23,6 @@ import ThemedText from '@/components/ui/Text/ThemedText'
 // hooks for buttons jsx format (bad)
 import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
-// hook for input components
-import ThemedTextInput from '@/components/ui/Input/ThemedTextInput'
 
 // library function for hook 
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -80,6 +75,9 @@ return (
 		<View>
 			{/* logo */}
 			<ThemedLogo style={styles.image}/>
+			<View>
+				
+			</View>
 		</View>
 		<View>
 			{/* h1 */}
