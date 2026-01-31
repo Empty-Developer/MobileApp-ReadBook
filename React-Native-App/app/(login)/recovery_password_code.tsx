@@ -21,6 +21,7 @@ import AuthFields from '@/auth/Field/AuthField'
 import CodeInput from '@/components/ui/InputCode/InputCode'
 // library function for hook 
 import { SubmitHandler, useForm } from 'react-hook-form'
+import theme from '@/style/theme'
 const recovery_password = () => {
   const colorScheme = useColorScheme() ?? 'light'
     
@@ -76,6 +77,17 @@ const recovery_password = () => {
 				/>
 			</View>
 
+			<View>
+				<Text style={[styles.text_control, {color: theme.layout}]}>If you haven't received it by email, try going back.</Text>
+			</View>
+
+			<Link
+    	        href={'/recovery_password'}
+    	        style={[styles.text_link, { color: theme.description }]}
+    	    >
+    	        Go back?
+    	    </Link>
+
     	    {/* button */}
 			<View style={{ 
     	        width: '100%',
@@ -88,12 +100,6 @@ const recovery_password = () => {
 				    <Text style={styles.text_button}>Continue</Text>
 				</ThemedButton>
 		    </View>
-    	    <Link
-    	        href={'/recovery_password'}
-    	        style={[styles.text_link, { color: theme.description }]}
-    	    >
-    	        Go back?
-    	    </Link>
     	</ThemedView>
 	</TouchableWithoutFeedback>
   )
@@ -152,7 +158,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontFamily: 'ge-regular',
 		color: '#373737',
-		paddingVertical: 30,
+		paddingTop: 20,
 	},
 	// text sign in
 	text_button: {
@@ -173,4 +179,12 @@ const styles = StyleSheet.create({
 		fontFamily: 'ge-medium',
 		fontSize: 20,
 	},
+
+	text_control: {
+		textAlign: 'left',
+		fontSize: 24,
+		fontWeight: '700',
+		marginTop: 25,
+		marginBottom: 10,
+	}
 })

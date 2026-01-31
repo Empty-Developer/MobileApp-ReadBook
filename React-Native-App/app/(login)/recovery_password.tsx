@@ -64,7 +64,7 @@ const recovery_password = () => {
 		  </View>
       {/* login */}
       <View style={{ width: '100%' }}>
-			  <AuthFields control={control} />
+			  <AuthFields control={control}/>
 		  </View>
 
         {/* button */}
