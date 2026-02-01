@@ -5,8 +5,6 @@ import { View, ActivityIndicator } from 'react-native'
 
 export const AuthContext = createContext<IContext>({} as IContext) 
 
-SplashScreen.preventAutoHideAsync()
-
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const [user, setUser] = useState<TypeUserState>(null) 
     const [isLoading, setIsLoading] = useState(true)
@@ -24,12 +22,23 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
             } finally {
                 if (mounted) {
                     setIsLoading(false)
-                    await SplashScreen.hideAsync()
+                    setTimeout(() => {
+                        SplashScreen.hideAsync()
+                    }, 100)
+                    
                 }
             }
         }
 
-        checkAccessToken() 
+        ;(async () => {
+            try {
+                await SplashScreen.preventAutoHideAsync()
+            } catch (e) {
+                // ignore preventAutoHide errors
+            }
+
+            await checkAccessToken()
+        })()
 
         return () => {
             mounted = false
@@ -37,7 +46,11 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     }, [])
 
     if (isLoading) {
-        return null
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" />
+            </View>
+        )
     }
 
     return (

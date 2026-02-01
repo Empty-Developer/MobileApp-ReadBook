@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet } from 'react-native'
+import { Pressable, StyleSheet, ViewStyle } from 'react-native'
 
-const ThemedButton = ({ style, ...props }) => {
+const ThemedButton = ({ style, ...props }: { style?: ViewStyle; [key: string]: any }) => {
   return (
     <Pressable 
       style={({ pressed }) => [

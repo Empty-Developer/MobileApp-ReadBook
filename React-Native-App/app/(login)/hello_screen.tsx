@@ -11,7 +11,8 @@ import ThemedText from '@/components/ui/Text/ThemedText'
 
 // hook logo theme
 import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
-const hello_screen = () => {
+
+const HelloScreen = () => {
     const colorScheme = useColorScheme() ?? 'light'
     const theme = Colors[colorScheme]
     const router = useRouter()
@@ -47,17 +48,16 @@ const hello_screen = () => {
 			</View>
 
 				{/* button next */}
-			<View style={{ width: '100%' }}>
-				{/* fuck routing */}
-				<ThemedButton onPress={() => router.push('/(main)')} style={undefined}>  
-					<Text style={styles.text_button}>Let’s go</Text>
-				</ThemedButton>
-			</View>
+				<View style={{ width: '100%' }}>
+					<ThemedButton onPress={() => router.push('/(main)')} style={undefined}>
+						<Text style={styles.text_button}>Lets go</Text>
+					</ThemedButton>
+				</View>
 		</ThemedView>
 	)
 }
 
-export default hello_screen
+		export default HelloScreen
 
 const styles = StyleSheet.create({
 	// button next home

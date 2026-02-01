@@ -2,10 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, useColorScheme } from 'react-native'
 import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import { Colors } from '@/constants/Colors'
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { useRouter } from 'expo-router'
 // hooks
 import ThemedView from '@/components/ui/View/ThemedView'
 import ThemedText from '@/components/ui/Text/ThemedText' 
@@ -14,16 +13,16 @@ import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
 
 // library function for hook 
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 // data email and password
 import { IAuthFormData } from '@/types/auth.interface'
 import AuthFields from '@/auth/Field/AuthField'
 
-const registration = () => {
+const Registration = () => {
 
 	// login hook-form
-	const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+	const {control} = useForm<IAuthFormData>({
 	mode: 'onChange'
 	})
 
@@ -35,6 +34,8 @@ const registration = () => {
       	'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
       	'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
     })
+
+	const router = useRouter()
   
     if(!fontsLoaded) {
     return (
@@ -44,8 +45,6 @@ const registration = () => {
     )
        
     }
-
-	const router = useRouter()
 
 	return (
 		<ThemedView style={globalStyle.main}>
@@ -97,7 +96,7 @@ const registration = () => {
 	)
 }
 
-export default registration
+export default Registration
 
 const styles = StyleSheet.create({
 	// logo

@@ -2,7 +2,6 @@ import { Stack } from 'expo-router'
 import { useColorScheme, StyleSheet, StatusBar, View } from 'react-native'
 import { Colors } from '@/constants/Colors'
 import AuthProvider from '@/providers/auth/AuthProvider'
-
 export default function Layout() {
   const colorScheme = useColorScheme() ?? 'light'
   const theme = Colors[colorScheme]
@@ -18,6 +17,11 @@ export default function Layout() {
           headerShown: false,
           contentStyle: { backgroundColor: theme.background }
         }}>
+
+          <Stack.Screen name="index" options={{ headerShown: false }}/>
+
+          <Stack.Screen name="(login)" options={{ headerShown: false }}/>
+
           <Stack.Screen name="(main)" options={{ headerShown: false }}/>
         </Stack>
       </View>

@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "style/theme.js", "style/global_style.js", "components/ui/Button/button.js", "components/ui/Logo/ThemedLogo.tsx", "components/ui/Button/ThemedButton.jsx", "components/ui/Button/ThemedButtonGoogle.jsx"  ]
+, "style/theme.js", "style/global_style.js", "components/ui/Button/button.js", "components/ui/Logo/ThemedLogo.tsx", "components/ui/Button/ThemedButton.tsx", "components/ui/Button/ThemedButtonGoogle.tsx"  ]
 }

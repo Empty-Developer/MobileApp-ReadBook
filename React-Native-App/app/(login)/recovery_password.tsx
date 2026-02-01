@@ -12,29 +12,30 @@ import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
 import ThemedText from '@/components/ui/Text/ThemedText' 
 import ThemedButton from '@/components/ui/Button/ThemedButton'
 import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
-import { Link, router } from 'expo-router'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 // data email and password
 import { IAuthFormData } from '@/types/auth.interface'
 import AuthFields from '@/auth/Field/AuthField'
 
 // library function for hook 
 import { SubmitHandler, useForm } from 'react-hook-form'
-const recovery_password = () => {
+const RecoveryPassword = () => {
   const colorScheme = useColorScheme() ?? 'light'
     
   const theme = Colors[colorScheme]
 
-  const [fontsLoaded] = useFonts({
+  useFonts({
         'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
         'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
         'ge-medium': require('@/assets/font/Geist-Medium.ttf'),
   })
 
   // login hook-form
-  const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+  const {handleSubmit, control} = useForm<IAuthFormData>({
     mode: 'onChange'
   })
+
+	const router = useRouter()
 
   const handleCode = async () => {
         await handleSubmit(onSubmit)();
@@ -73,9 +74,7 @@ const recovery_password = () => {
         marginTop: 35,
        }}>
 			  {/* it is value for button  */}
-			  <ThemedButton onPress={
-				  handleCode
-			  	} style={undefined}>
+							<ThemedButton onPress={handleCode} style={undefined}>
 			  	<Text style={styles.text_button}>Continue</Text>
 			  </ThemedButton>
 		  </View>
@@ -87,7 +86,7 @@ const recovery_password = () => {
 		  </View>
 		  {/* google button */}
 		  <View style={{ width: '100%' }}>
-			  <ThemedButtonGoogle style={undefined}>
+              <ThemedButtonGoogle style={undefined}>
 			  	<AntDesign name='google' size={24} color={theme.layout_black} />
 		  		<Text style={styles.text_button_google}>Sign In With Google</Text>
 		  	</ThemedButtonGoogle>
@@ -102,7 +101,7 @@ const recovery_password = () => {
   )
 }
 
-export default recovery_password
+export default RecoveryPassword
 
 const styles = StyleSheet.create({
   // logo

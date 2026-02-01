@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { Text, View, useColorScheme } from 'react-native'
 import React from 'react'
 import { globalStyle } from '../../style/global_style'
 import { Colors } from '../../constants/Colors'
 
-const like = () => {
+const Like = () => {
   const colorScheme = useColorScheme() ?? 'light'
   const theme = Colors[colorScheme]
 	return (
@@ -13,6 +13,4 @@ const like = () => {
 	)
 }
 
-export default like
-
-const styles = StyleSheet.create({})
+export default Like

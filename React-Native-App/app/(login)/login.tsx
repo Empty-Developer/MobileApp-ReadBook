@@ -8,10 +8,7 @@ import {
 import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
 import AntDesign from '@expo/vector-icons/AntDesign'
-import { Link } from 'expo-router'
-import { useRouter } from 'expo-router'
-// import { button } from '../components/ui/Button/button'
-// import { google_button } from '../components/ui/Button/button_google'
+import { Link, useRouter } from 'expo-router'
 import { Colors } from '@/constants/Colors'
 
 // hook background all screen
@@ -31,10 +28,11 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { IAuthFormData } from '@/types/auth.interface'
 import AuthFields from '@/auth/Field/AuthField'
 
+
 const Login = () => {
 
 	// login hook-form
-	const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+	const {handleSubmit, control} = useForm<IAuthFormData>({
 		mode: 'onChange'
 	})
 
@@ -47,6 +45,7 @@ const Login = () => {
 	const onSubmit: SubmitHandler<IAuthFormData> = data =>{
 		console.log(data.email)
 		console.log(data.password)
+
 	}
 
 
@@ -69,6 +68,7 @@ const Login = () => {
 			</View>
 		)
 	}
+
 
 return (
 	<ThemedView style={[globalStyle.main]}>
@@ -107,9 +107,7 @@ return (
 		{/* button */}
 		<View style={{ width: '100%' }}>
 			{/* it is value for button  */}
-			<ThemedButton onPress={
-				handleSignIn
-				} style={undefined}>
+			<ThemedButton onPress={handleSignIn} style={undefined}>
 				<Text style={styles.text_button}>Sign in</Text>
 			</ThemedButton>
 		</View>

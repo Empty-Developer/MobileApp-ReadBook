@@ -1,7 +1,5 @@
 import { StyleSheet, TextInput, View, Keyboard, useColorScheme } from 'react-native'
 import React, {useState, useRef, useEffect} from 'react'
-import { globalStyle } from '@/style/global_style'
-import { useFonts } from 'expo-font'
 import { CodeInputProps } from './input-code.interface'
 import { Colors } from '@/constants/Colors'
 const CodeInput: React.FC<CodeInputProps> = ({
@@ -77,12 +75,6 @@ const CodeInput: React.FC<CodeInputProps> = ({
     const colorScheme = useColorScheme() ?? 'light'
         
     const theme = Colors[colorScheme]
-    
-    const [fontsLoaded] = useFonts({
-            'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
-            'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
-            'ge-medium': require('@/assets/font/Geist-Medium.ttf'),
-    })
   return (
     <View style={styles.container}>
       {code.map((digit, index) => (

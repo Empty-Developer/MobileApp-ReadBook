@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { Text, View, useColorScheme } from 'react-native'
 import React from 'react'
 import { globalStyle } from '../../style/global_style'
 import { Colors } from '../../constants/Colors'
 
-const user_profile = () => {
+const UserProfile = () => {
 	const colorScheme = useColorScheme() ?? 'light'
 	const theme = Colors[colorScheme]
 	return (
@@ -13,6 +13,4 @@ const user_profile = () => {
 	)
 }
 
-export default user_profile
-
-const styles = StyleSheet.create({})
+export default UserProfile

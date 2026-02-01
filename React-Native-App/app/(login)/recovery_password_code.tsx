@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, useColorScheme, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React from 'react'
-import AntDesign from '@expo/vector-icons/AntDesign'
 import { Colors } from '@/constants/Colors'
 import { globalStyle } from '@/style/global_style'
 import { useFonts } from 'expo-font'
@@ -11,32 +10,29 @@ import ThemedLogo from '@/components/ui/Logo/ThemedLogo'
 // hook text h1, description
 import ThemedText from '@/components/ui/Text/ThemedText' 
 import ThemedButton from '@/components/ui/Button/ThemedButton'
-import ThemedButtonGoogle from '@/components/ui/Button/ThemedButtonGoogle'
-import { Link, router } from 'expo-router'
-import { useRouter } from 'expo-router'
-// data email and password
-import { IAuthFormData } from '@/types/auth.interface'
-import AuthFields from '@/auth/Field/AuthField'
+import { Link, useRouter } from 'expo-router'
 // hook input code
 import CodeInput from '@/components/ui/InputCode/InputCode'
 // library function for hook 
 import { SubmitHandler, useForm } from 'react-hook-form'
-import theme from '@/style/theme'
-const recovery_password = () => {
+import { IAuthFormData } from '@/types/auth.interface'
+const RecoveryPasswordCode = () => {
   const colorScheme = useColorScheme() ?? 'light'
     
   const theme = Colors[colorScheme]
 
-  const [fontsLoaded] = useFonts({
+  useFonts({
         'ge-bold': require('@/assets/font/Geist-Bold.ttf'),
         'ge-regular': require('@/assets/font/Geist-Regular.ttf'),
         'ge-medium': require('@/assets/font/Geist-Medium.ttf'),
   })
 
   // login hook-form
-  const {handleSubmit, reset, control} = useForm<IAuthFormData>({
+  const {handleSubmit} = useForm<IAuthFormData>({
     mode: 'onChange'
   })
+
+	const router = useRouter()
 
   const handleMain = async () => {
         await handleSubmit(onSubmit)();
@@ -78,7 +74,7 @@ const recovery_password = () => {
 			</View>
 
 			<View>
-				<Text style={[styles.text_control, {color: theme.layout}]}>If you haven't received it by email, try going back.</Text>
+				<Text style={[styles.text_control, {color: theme.layout}]}>If you havent received it by email, try going back.</Text>
 			</View>
 
 			<Link
@@ -94,9 +90,7 @@ const recovery_password = () => {
     	        marginTop: 35,
     	    }}>
 				{/* it is value for button  */}
-				<ThemedButton onPress={
-				  handleMain
-				} style={undefined}>
+								<ThemedButton onPress={handleMain} style={undefined}>
 				    <Text style={styles.text_button}>Continue</Text>
 				</ThemedButton>
 		    </View>
@@ -105,7 +99,7 @@ const recovery_password = () => {
   )
 }
 
-export default recovery_password
+export default RecoveryPasswordCode
 
 const styles = StyleSheet.create({
   // logo

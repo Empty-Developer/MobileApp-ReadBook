@@ -3,8 +3,7 @@ import {
   Text, 
   View, 
   useColorScheme,
-  TextInput,
-  TextInputProps 
+  TextInput
 } from 'react-native'
 import { IField } from './field.interface'
 import React, { JSX } from 'react'
